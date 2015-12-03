@@ -2,7 +2,7 @@
 # Mucks project
 #
 name: mucks
-dir: /home/serge/src/serge/mucks
+dir: $HOME/.mucks
 mux: tmux
 
 [vim]
@@ -12,5 +12,7 @@ vim mucks test.sh mucksrc.example -p
 
 [man]
 man tmux
-- vsplit
+tmux split-window -v -p 20
+tmux select-pane -t 1
+# - vsplit
 man screen

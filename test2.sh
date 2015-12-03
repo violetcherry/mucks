@@ -14,8 +14,9 @@ fail() {
 
 runtest() {
 	> $OUT
-	mucks .testmucksrc > /dev/null
-	if [ `wc -l $OUT | cut -d' ' -f1` -gt $1 ] ; then fail $1; return; fi
+	./mucks .testmucksrc > /dev/null
+	#if [ "`wc -l $OUT | cut -d' ' -f1`" -gt "$1" ] ; then fail $1; return; fi
+	if [ "`wc -l $OUT |awk '{print $1}'`" -gt "$1" ] ; then fail $1; return; fi
 	for i in `seq 1 $1` ; do
 		read s
 		if echo "$s" | grep "OK $i:" >/dev/null ; then

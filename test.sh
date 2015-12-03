@@ -4,7 +4,7 @@
 . assert.sh
 
 TEST="yes" # to skip real execution of mucks
-. mucks
+. mucks.sh
 
 # Test trim
 assert "trim 'foo'" "foo"
@@ -52,7 +52,7 @@ mux_finalize() {
 # Test readcfg
 parse_config 3<< EOF
 name: Test project
-dir: ~/src
+dir: ~/.mucks
 
 [Window 1]
 external cmd 1
@@ -63,7 +63,7 @@ external cmd 2
 external cmd 3
 EOF
 assert "echo $CONFIG_name" "Test project"
-assert "echo $CONFIG_dir" "$HOME/src" # '~' turns to $HOME value
+assert "echo $CONFIG_dir" "$HOME/.mucks" # '~' turns to $HOME value
 
 assert_end "parse_config"
 

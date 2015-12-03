@@ -37,7 +37,10 @@ parse_layout() {
 			mux_sleep $args
 			;;
 		*)
-			if [ `expr substr $cmd 1 1` = "-" ]; then
+			#if [ `expr substr $cmd 1 1` = "-" ]; then
+            # expr substr $cmd 1 1 encounter syntax error in mac os x 10.11
+            # use echo "$cmd"|cut -c1-1 instead
+			if [ `echo "$cmd"|cut -c1-1` = "-" ]; then
 				echo "Invalid command: $cmd"
 				exit 1
 			else
