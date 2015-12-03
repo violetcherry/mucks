@@ -1,4 +1,4 @@
-#!/usr/bin/awk -f
+#!/usr/local/bin/awk -f
 
 function usage() {
 	print("USAGE: mucks [mucksrc]")
