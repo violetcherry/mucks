@@ -40,7 +40,10 @@ function mux(name, cmd, precmd) {
 }
 
 function id() {
-	if (!empty(PROCINFO["pid"])) {
+	#if (!empty(PROCINFO["pid"])) {
+	if (!empty(CONFIG["name"])) {
+		return CONFIG["name"];
+	}else if (!empty(PROCINFO["pid"])) {
 		return "mucks" PROCINFO["pid"];
 	} else {
 		if (!_id) _id = systime();
@@ -64,7 +67,7 @@ function finish() {
 function mux_new_window(section, _, cmd) {
 	if (!FIRST_WINDOW) {
 		FIRST_WINDOW=1
-		cmd = "cd " CONFIG["dir"] 
+		cmd = "cd " CONFIG["dir"]
 		if (CONFIG["pre"]) {
 			cmd = cmd "; eval " CONFIG["pre"] "; cd " CONFIG["dir"]
 		}

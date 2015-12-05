@@ -1,18 +1,19 @@
 #
 # Mucks project
 #
-name: mucks
+name: debug_screen
 dir: $HOME/.mucks
-mux: tmux
+mux: screen
 
 [vim]
-vim mucks test.sh mucksrc.example -p
+vim mucks test.sh mucksrc.example
 
 [shell]
+pwd
 
 [man]
-man tmux
-tmux split-window -v -p 20
-tmux select-pane -t 1
+#man tmux
+#tmux split-window -v -p 20
+#tmux select-pane -t 1
 # - vsplit
 man screen
