@@ -78,12 +78,12 @@ function mux_new_window(section, _, cmd) {
 		mux("screen", "-d -m -t " esc(section), cmd)
 		mux("dvtm", "", cmd "; abduco -n " id() " dvtm -c " CONFIG["tmpdir"] "/" id() "; sleep 1")
 		system("sleep 1")
-		wndindex = 0
+		wndindex = 1
 	} else {
-		mux("tmux", "new-window -n " esc(section), "cd " CONFIG["dir"])
-		mux("screen", "-X screen -t " esc(section), "cd " CONFIG["dir"])
-		mux("dvtm", "create " (empty(ENVIRON["SHELL"]) ? "/bin/sh" : ENVIRON["SHELL"]) " " esc(section) " " CONFIG["dir"])
 		wndindex = wndindex + 1
+		mux("tmux", "new-window -n " esc(section), "cd " CONFIG["dir"])
+		mux("screen", "-X screen -t " esc(section) " -p " wndindex , "cd " CONFIG["dir"])
+		mux("dvtm", "create " (empty(ENVIRON["SHELL"]) ? "/bin/sh" : ENVIRON["SHELL"]) " " esc(section) " " CONFIG["dir"])
 	}
 	if (CONFIG["prewnd"]) {
 		mux_send(CONFIG["prewnd"])
